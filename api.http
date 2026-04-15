@@ -1,0 +1,8 @@
+# go-ecommerce-backend-api/api.http
+@baseUrl = http://localhost:8085/v1/2026
+
+###
+GET {{baseUrl}}/users/123
+
+
+
