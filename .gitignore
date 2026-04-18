@@ -42,3 +42,5 @@ coverage.out
 
 # Test binary
 *.test
+
+configs/local.yaml

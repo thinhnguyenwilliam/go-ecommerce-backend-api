@@ -1,5 +1,7 @@
 # go-ecommerce-backend-api/docker-compose.yml
+# docker compose down
 # docker compose up -d
+# docker rm -f redis-insight
 
 
 services:
@@ -16,6 +18,8 @@ services:
       - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - backend-go-ecommerce-backend-api-net
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -28,6 +32,37 @@ services:
       PMA_PORT: 3306
     depends_on:
       - mysql
+    networks:
+      - backend-go-ecommerce-backend-api-net
+
+  redis:
+    image: redis:7
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+      - ./configs/redis.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    networks:
+      - backend-go-ecommerce-backend-api-net
+
+  redisinsight:
+    image: redis/redisinsight:latest
+    container_name: redis-insight
+    restart: unless-stopped
+    ports:
+      - "5540:5540"
+    depends_on:
+      - redis
+    networks:
+      - backend-go-ecommerce-backend-api-net
 
 volumes:
   mysql_data:
+  redis_data:
+
+networks:
+  backend-go-ecommerce-backend-api-net:
+    driver: bridge
