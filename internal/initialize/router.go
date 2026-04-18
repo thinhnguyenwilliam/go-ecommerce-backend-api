@@ -1,12 +1,12 @@
-// go-ecommerce-backend-api/internal/routers/router.go
-package routers
+// go-ecommerce-backend-api/internal/initialize/router.go
+package initialize
 
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/thinhnguyenwilliam/go-ecommerce-backend-api/internal/handlers"
 )
 
-func NewRouter() *gin.Engine {
+func InitRouter() *gin.Engine {
 	r := gin.Default()
 
 	userHandler := handlers.NewUserHandler()

@@ -2,7 +2,7 @@
 @baseUrl = http://localhost:8085/v1/2026
 
 ###
-GET {{baseUrl}}/users/123
+GET {{baseUrl}}/users/125
 
 
 
