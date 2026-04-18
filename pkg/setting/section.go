@@ -5,6 +5,13 @@ type Config struct {
 	Server  Server        `mapstructure:"server"`
 	DBMySQL DBMySQL       `mapstructure:"dbmysql"`
 	Logger  LoggerSetting `mapstructure:"logger"`
+	Redis   RedisSetting  `mapstructure:"redis"`
+}
+
+type RedisSetting struct {
+	Host     string `mapstructure:"host"`
+	Port     string `mapstructure:"port"`
+	Password string `mapstructure:"password"`
 }
 
 type LoggerSetting struct {
